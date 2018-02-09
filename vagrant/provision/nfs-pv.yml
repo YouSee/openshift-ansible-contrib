@@ -1,0 +1,73 @@
+kind: Template
+apiVersion: v1
+metadata:
+  name: nfs-pv
+objects:
+- kind: PersistentVolume
+  metadata:
+    name: pv0001 
+  spec:
+    capacity:
+      storage: 5Gi 
+    accessModes:
+    - ReadWriteOnce 
+    nfs: 
+      path: /srv/nfs/pv0001
+      server: admin1.example.com 
+    persistentVolumeReclaimPolicy: Recycle 
+- kind: PersistentVolume
+  metadata:
+    name: pv0002
+  spec:
+    capacity:
+      storage: 100Gi 
+    accessModes:
+    - ReadWriteOnce
+    - ReadOnlyMany
+    - ReadWriteMany
+    nfs: 
+      path: /srv/nfs/pv0002
+      server: admin1.example.com 
+    persistentVolumeReclaimPolicy: Recycle 
+- kind: PersistentVolume
+  metadata:
+    name: pv0003
+  spec:
+    capacity:
+      storage: 100Gi 
+    accessModes:
+    - ReadWriteOnce
+    - ReadOnlyMany
+    - ReadWriteMany
+    nfs: 
+      path: /srv/nfs/pv0003
+      server: admin1.example.com 
+    persistentVolumeReclaimPolicy: Recycle
+- kind: PersistentVolume
+  metadata:
+    name: pv0004
+  spec:
+    capacity:
+      storage: 100Gi 
+    accessModes:
+    - ReadWriteOnce
+    - ReadOnlyMany
+    - ReadWriteMany
+    nfs: 
+      path: /srv/nfs/pv0004
+      server: admin1.example.com 
+    persistentVolumeReclaimPolicy: Recycle
+- kind: PersistentVolume
+  metadata:
+    name: pv0005
+  spec:
+    capacity:
+      storage: 100Gi 
+    accessModes:
+    - ReadWriteOnce
+    - ReadOnlyMany
+    - ReadWriteMany
+    nfs: 
+      path: /srv/nfs/pv0005
+      server: admin1.example.com 
+    persistentVolumeReclaimPolicy: Recycle
