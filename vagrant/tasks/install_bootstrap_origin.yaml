@@ -4,6 +4,7 @@
     state: present
 - git:
     repo: https://github.com/openshift/openshift-ansible
+    version: release-3.7
     dest: ~/openshift-ansible
     force: yes
     update: yes
