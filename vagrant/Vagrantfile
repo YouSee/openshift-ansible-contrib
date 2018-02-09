@@ -103,7 +103,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provider "virtualbox" do |v, override|
     #v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate//vagrant","1"]
-    v.memory = 1024
+    v.memory = 6044
     v.cpus = 1
     override.vm.box = box_name
     provider_name = 'virtualbox'
@@ -147,7 +147,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     if deployment_type == 'openshift-enterprise'
       config_playbook = "/usr/share/ansible/openshift-ansible/playbooks/byo/config.yml"
     else
-      config_playbook = "/home/vagrant/openshift-ansible/playbooks/byo/config.yml"
+       config_playbook = "/home/vagrant/openshift-ansible/playbooks/byo/config.yml"
+       #		config_playbook = "/home/vagrant/openshift-ansible/playbooks/byo/openshift-cluster/config.yml"
     end
 
     admin1.vm.synced_folder "..", "/home/vagrant/sync", type: sync_type
@@ -175,6 +176,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         rhsm_user: "#{ENV.fetch('SUB_USERNAME', '')}",
         rhsm_password: "#{ENV.fetch('SUB_PASSWORD', '')}",
         rhsm_pool: rhsm_pool,
+        openshift_disable_check: 'disk_availability,docker_storage,memory_availability'
       },
       etcd: ["master1"],
       nfs: ["admin1"],
