@@ -54,7 +54,7 @@ else
   box_name = 'fedora/25-cloud-base'
 end
 
-NETWORK_BASE = '192.168.50'
+NETWORK_BASE = '192.168.51'
 INTEGRATION_START_SEGMENT = 20
 
 def quote_labels(labels)
@@ -186,33 +186,33 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     ansible_host_vars = {
       master1:  {
-        openshift_ip: '192.168.50.20',
+        openshift_ip: "#{NETWORK_BASE}.#{INTEGRATION_START_SEGMENT}",
         openshift_node_labels: quote_labels(
           region: 'infra',
           zone: 'default',
         ),
         openshift_schedulable: true,
-        ansible_host: '192.168.50.20',
+        ansible_host: "#{NETWORK_BASE}.#{INTEGRATION_START_SEGMENT}",
         ansible_ssh_private_key_file: "/home/vagrant/.ssh/master1.key"
       },
       node1: {
-        openshift_ip: '192.168.50.21',
+        openshift_ip: "#{NETWORK_BASE}.#{INTEGRATION_START_SEGMENT + 1}",
         openshift_node_labels: quote_labels(
           region: 'primary',
           zone: 'east',
         ),
         openshift_schedulable: true,
-        ansible_host: '192.168.50.21',
+        ansible_host: "#{NETWORK_BASE}.#{INTEGRATION_START_SEGMENT + 1}",
         ansible_ssh_private_key_file: "/home/vagrant/.ssh/node1.key"
       },
       node2: {
-        openshift_ip: '192.168.50.22',
+        openshift_ip: "#{NETWORK_BASE}.#{INTEGRATION_START_SEGMENT + 2}",
         openshift_node_labels: quote_labels(
           region: 'primary',
           zone: 'west',
         ),
         openshift_schedulable: true,
-        ansible_host: '192.168.50.22',
+        ansible_host: "#{NETWORK_BASE}.#{INTEGRATION_START_SEGMENT + 2}",
         ansible_ssh_private_key_file: "/home/vagrant/.ssh/node2.key"
       },
       admin1: {
